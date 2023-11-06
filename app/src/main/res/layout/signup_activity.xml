@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUp_page">
+
+  <ImageView
+      android:id="@+id/topBg"
+      android:layout_width="match_parent"
+      android:layout_height="190dp"
+      android:background="@drawable/top_curve"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <ImageView
+      android:id="@+id/backBtn"
+      android:layout_width="40dp"
+      android:layout_height="40dp"
+      android:background="@drawable/back"
+      android:clickable="true"
+      android:backgroundTint="@color/white"
+      android:layout_marginLeft="10dp"
+      android:layout_marginTop="20dp"
+      app:layout_constraintLeft_toLeftOf="@id/topBg"
+      app:layout_constraintTop_toTopOf="@id/topBg"
+      />
+  <ImageView
+      android:layout_width="wrap_content"
+      android:layout_height="140dp"
+      android:src="@drawable/bitcoin"
+      android:alpha=".5"
+      app:layout_constraintTop_toTopOf="@id/topBg"
+      app:layout_constraintBottom_toBottomOf="@id/topBg"
+      app:layout_constraintLeft_toLeftOf="@id/topBg"
+      app:layout_constraintRight_toRightOf="@id/topBg"
+      />
+  <TextView
+      android:id="@+id/tv_1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/create_account"
+      android:textColor="@color/lightblue"
+      android:textStyle="bold"
+      android:layout_marginTop="50dp"
+      android:textSize="30sp"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/topBg"
+      />
+  <EditText
+      android:id="@+id/inputBox"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="25dp"
+      android:background="@drawable/login_background"
+      app:layout_constraintTop_toBottomOf="@id/tv_1"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      android:hint="@string/Dimmy_text"
+      android:paddingStart="50dp"
+      />
+
+  <ImageView
+      android:layout_width="25dp"
+      android:layout_height="25dp"
+      android:layout_marginTop="5.75dp"
+      android:src="@drawable/user"
+      app:layout_constraintHorizontal_bias="0.065"
+      app:layout_constraintLeft_toLeftOf="@id/inputBox"
+      app:layout_constraintRight_toRightOf="@id/inputBox"
+      app:layout_constraintTop_toTopOf="@id/inputBox" />
+
+  <EditText
+      android:id="@+id/inputBox1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:background="@drawable/login_background"
+      android:hint="@string/jonesjohn_johncoin_com"
+      android:paddingStart="50dp"
+      android:layout_marginTop="12dp"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/inputBox"
+      />
+  <ImageView
+      android:layout_width="25dp"
+      android:layout_height="25dp"
+      android:layout_marginTop="5.75dp"
+      android:src="@drawable/email"
+      app:layout_constraintHorizontal_bias="0.065"
+      app:layout_constraintLeft_toLeftOf="@id/inputBox1"
+      app:layout_constraintRight_toRightOf="@id/inputBox1"
+      app:layout_constraintTop_toTopOf="@id/inputBox1" />
+
+  <EditText
+      android:id="@+id/passwordBox"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="15dp"
+      android:background="@drawable/login_background"
+      android:hint="@string/password"
+      android:inputType="textPassword"
+      android:paddingStart="50sp"
+      app:layout_constraintTop_toBottomOf="@id/inputBox1"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      />
+  <ImageView
+      android:layout_width="25dp"
+      android:layout_height="25dp"
+      android:layout_marginTop="5.75dp"
+      android:src="@drawable/padlock"
+      app:layout_constraintHorizontal_bias="0.05"
+      app:layout_constraintLeft_toLeftOf="@id/passwordBox"
+      app:layout_constraintRight_toRightOf="@id/passwordBox"
+      app:layout_constraintTop_toTopOf="@id/passwordBox" />
+
+  <ImageView
+      android:layout_width="28dp"
+      android:layout_height="28dp"
+      android:layout_marginTop="7.45dp"
+      android:src="@drawable/view"
+      app:layout_constraintHorizontal_bias=".95"
+      app:layout_constraintRight_toRightOf="@id/passwordBox"
+      app:layout_constraintLeft_toLeftOf="@id/passwordBox"
+      app:layout_constraintTop_toTopOf="@id/passwordBox" />
+
+  <EditText
+      android:id="@+id/passwordBox1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="15dp"
+      android:inputType="textPassword"
+      android:background="@drawable/login_background"
+      android:hint="@string/repeat_password"
+      android:paddingStart="50sp"
+      app:layout_constraintTop_toBottomOf="@id/passwordBox"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+
+      />
+  <ImageView
+      android:layout_width="25dp"
+      android:layout_height="25dp"
+      android:layout_marginTop="5.75dp"
+      android:src="@drawable/padlock"
+      app:layout_constraintHorizontal_bias="0.05"
+      app:layout_constraintLeft_toLeftOf="@id/passwordBox1"
+      app:layout_constraintRight_toRightOf="@id/passwordBox1"
+      app:layout_constraintTop_toTopOf="@id/passwordBox1" />
+
+  <ImageView
+      android:layout_width="28dp"
+      android:layout_height="28dp"
+      android:layout_marginTop="7.45dp"
+      android:src="@drawable/view"
+      app:layout_constraintHorizontal_bias=".95"
+      app:layout_constraintRight_toRightOf="@id/passwordBox1"
+      app:layout_constraintLeft_toLeftOf="@id/passwordBox1"
+      app:layout_constraintTop_toTopOf="@id/passwordBox1" />
+  <CheckBox
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="I agree the Terms and Conditions"
+      android:textColor="@color/lightblue"
+      app:layout_constraintTop_toBottomOf="@id/passwordBox1"
+      app:layout_constraintLeft_toLeftOf="@id/passwordBox1"
+      android:layout_marginTop="-3dp"
+      />
+
+
+  <Button
+      android:id="@+id/in_btn"
+      android:layout_width="290dp"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="80dp"
+      android:text="@string/sign_up"
+      android:textAllCaps="true"
+      android:backgroundTint="@color/lightblue"
+      android:textColor="@color/white"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent" />
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:hint="@string/already_have_an_account"
+      android:layout_marginBottom="50dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      />
+  <TextView
+      android:id="@+id/sign_in_btn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Sign in from here"
+      android:textColor="@color/lightblue"
+      android:textStyle="bold"
+      android:clickable="true"
+      android:layout_marginBottom="30dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      />
+</androidx.constraintlayout.widget.ConstraintLayout>

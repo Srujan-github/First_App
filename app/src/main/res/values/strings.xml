@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Login_Page</string>
+    <string name="welcome_to_btc_exchange">Welcome to BTC Exchange</string>
+    <string name="mainText">We are offering digital asset exchange With maximum security and advanced \n trading feature</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="already_a_member">Already a member?</string>
+    <string name="sign_in_now">Sign In Now</string>
+    <string name="Dimmy_text">Jack John</string>
+    <string name="password">Password</string>
+    <string name="remember_me">Remember me</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="hint">Don\'t you have an account?</string>
+    <string name="sign_up_hint">Sign Up from here</string>
+    <string name="create_account">Create Account</string>
+    <string name="jonesjohn_johncoin_com">jonesjohn@johncoin.com</string>
+    <string name="repeat_password">Repeat password</string>
+    <string name="already_have_an_account">Already have an Account?</string>
+</resources>
