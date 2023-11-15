@@ -1,7 +1,9 @@
 <resources>
-    <string name="app_name">Login_Page</string>
+    <string name="app_name">BitCoin Shield</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
     <string name="welcome_to_btc_exchange">Welcome to BTC Exchange</string>
-    <string name="mainText">We are offering digital asset exchange With maximum security and advanced \n trading feature</string>
+    <string name="mainText">We are offering digital asset exchange \n With maximum security and advanced \n trading feature</string>
     <string name="sign_up">Sign Up</string>
     <string name="sign_in">Sign In</string>
     <string name="already_a_member">Already a member?</string>
@@ -16,4 +18,12 @@
     <string name="jonesjohn_johncoin_com">jonesjohn@johncoin.com</string>
     <string name="repeat_password">Repeat password</string>
     <string name="already_have_an_account">Already have an Account?</string>
+    <string name="reapet_password">Reapet Password</string>
+    <string name="sign_in_from_here">Sign in from here</string>
+    <string name="i_agree_the_terms_and_conditions">I agree the Terms and Conditions</string>
+    <string name="jackjohn_gmail_com">jackjohn@gmail.com</string>
+    <string name="name">Name:</string>
+    <string name="email">Email:-</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

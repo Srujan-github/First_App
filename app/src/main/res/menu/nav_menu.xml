@@ -1,4 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-  
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+
+    >
+<item
+    android:icon="@drawable/baseline_home_24"
+    android:id="@+id/home"
+    android:title="Home"/>
+<item
+    android:id="@+id/message"
+    android:title="messages"
+    android:icon="@drawable/baseline_message_24"/>
+<item
+    android:title="Settings"
+    android:id="@+id/setting"
+    android:icon="@drawable/baseline_settings_24"/>
+
+<item android:title="Profile">
+    <menu>
+
+        <item
+            android:id="@+id/looOut"
+            android:title="Log Out"
+            android:icon="@drawable/baseline_logout_24"
+            />
+    </menu>
+
+</item>
+
+
 </menu>

@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginTop="16dp"
+    android:layout_marginStart="16dp"
+    android:paddingTop="10dp"
+    android:paddingLeft="10dp"
+    android:background="@color/white">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ProfileImg"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="100dp"
+
+        android:src="@drawable/userimg"
+        android:layout_height="100dp"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+
+
+
+    <TextView
+
+        android:id="@+id/userName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       android:layout_marginTop="18dp"
+        android:text="Sai Srujan"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/ProfileImg"
+        tools:layout_editor_absoluteX="10dp" />
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/userMailId"
+            android:textSize="16sp"
+            android:text="saisrujan@gmail.com"
+            app:layout_constraintTop_toBottomOf="@id/userName"
+           app:layout_constraintLeft_toLeftOf="parent"
+            />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
