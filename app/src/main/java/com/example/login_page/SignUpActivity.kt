@@ -3,6 +3,7 @@ package com.example.login_page
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.widget.doOnTextChanged
 
 import com.example.login_page.databinding.SignupActivityBinding
 
@@ -12,9 +13,10 @@ class SignUp_page : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=SignupActivityBinding.inflate(layoutInflater);
         setContentView(binding.root)
+
         binding.backBtn.setOnClickListener{
-            val intent=Intent(this@SignUp_page,MainActivity::class.java);
-        startActivity(intent)
+
+            finish();
         }
         binding.signInBtn.setOnClickListener {
             val intent=Intent(this@SignUp_page,SignInActivity::class.java);
