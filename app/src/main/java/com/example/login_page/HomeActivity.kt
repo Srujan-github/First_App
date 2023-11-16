@@ -1,78 +1,129 @@
 package com.example.login_page
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.drawerlayout.widget.DrawerLayout
 import com.example.login_page.databinding.ActivityHomeBinding
-import com.google.android.material.navigation.NavigationView
+import com.example.login_page.databinding.NavHeaderBinding
+
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
+
+
     lateinit var toggle: ActionBarDrawerToggle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivityHomeBinding.inflate(layoutInflater)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val homeFragment = HomeFragment()
         val messagesFragment = MessagesFragment()
-        val settingsFragment=SettingsFragment()
+        val settingsFragment = SettingsFragment()
+        supportFragmentManager.beginTransaction().apply {
 
+            replace(R.id.flvfragements, homeFragment)
+
+            commit()
+        }
+        val headerView: View = binding.navView.getHeaderView(0)
+        val headerBinding: NavHeaderBinding = NavHeaderBinding.bind(headerView)
+        headerBinding.userName.text = "Muthu"
         binding.apply {
-           toggle=ActionBarDrawerToggle(this@HomeActivity,drawerLayout,R.string.open,R.string.close)
-           drawerLayout.addDrawerListener(toggle)
-           toggle.syncState()
+            toggle = ActionBarDrawerToggle(
+                this@HomeActivity,
+                drawerLayout,
+                R.string.open,
+                R.string.close
+            )
+            drawerLayout.addDrawerListener(toggle)
+            toggle.syncState()
 
-           supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-           navView.setNavigationItemSelectedListener {
+            navView.setNavigationItemSelectedListener {
 
-               when(it.itemId){
-                   R.id.home -> {
-                       supportFragmentManager.beginTransaction().apply {
-                           replace(R.id.flvfragements,homeFragment)
-                           commit()
-                       }
-                       Toast.makeText(this@HomeActivity,"this is Home Fragment",Toast.LENGTH_SHORT).show()
-                 drawerLayout.close()
+                when (it.itemId) {
+                    R.id.home -> {
+                        supportFragmentManager.beginTransaction().apply {
 
-                   }
-                   R.id.message -> {
-                       supportFragmentManager.beginTransaction().apply {
-                           replace(R.id.flvfragements,messagesFragment)
-                           commit()
-                       }
-                       Toast.makeText(this@HomeActivity,"this is Messages Fragment",Toast.LENGTH_SHORT).show()
-                       drawerLayout.close()
-                   }
-                   R.id.setting -> {
-                       supportFragmentManager.beginTransaction().apply {
-                           replace(R.id.flvfragements,settingsFragment)
-                           commit()
-                       }
-                       Toast.makeText(this@HomeActivity,"this is Settings Fragment",Toast.LENGTH_SHORT).show()
-                       drawerLayout.close()
-                   }
-                   R.id.looOut ->{
+                            replace(R.id.flvfragements, homeFragment)
+                            repeat(supportFragmentManager.backStackEntryCount) {
+                                supportFragmentManager.popBackStack()
+                            }
+                            commit()
+                        }
+                        Toast.makeText(
+                            this@HomeActivity,
+                            "this is Home Fragment",
+                            Toast.LENGTH_SHORT
+                        ).show()
 
-                       Toast.makeText(this@HomeActivity,"You are logged out",Toast.LENGTH_SHORT).show()
-                       finish()
-                   }
-               }
-            true
-           }
+                        drawerLayout.close()
 
-       }
+                    }
 
+                    R.id.message -> {
+                        supportFragmentManager.beginTransaction().apply {
+                            replace(R.id.flvfragements, messagesFragment)
+                            addToBackStack(null)
+                            commit()
+                        }
+                        Toast.makeText(
+                            this@HomeActivity,
+                            "this is Messages Fragment",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        drawerLayout.close()
+                    }
+
+                    R.id.setting -> {
+
+                        supportFragmentManager.beginTransaction().apply {
+                            replace(R.id.flvfragements, settingsFragment)
+                            addToBackStack(null)
+                            commit()
+                        }
+                        Toast.makeText(
+                            this@HomeActivity,
+                            "this is Settings Fragment",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        drawerLayout.close()
+                    }
+
+                    R.id.looOut -> {
+
+                        Toast.makeText(this@HomeActivity, "You are logged out", Toast.LENGTH_SHORT)
+                            .show()
+                        finish()
+                    }
+                }
+                true
+            }
+
+        }
 
 
     }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean{
-        if(toggle.onOptionsItemSelected(item)){
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (toggle.onOptionsItemSelected(item)) {
             true
         }
         return super.onOptionsItemSelected(item)
     }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val headerView: View = binding.navView.getHeaderView(0)
+        val headerBinding: NavHeaderBinding = NavHeaderBinding.bind(headerView)
+        headerBinding.ProfileImg.setImageURI(data?.data)
+
+    }
+
+
 }

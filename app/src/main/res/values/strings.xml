@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BitCoin Shield</string>
+    <string name="app_name">Crypto Shield</string>
     <string name="open">open</string>
     <string name="close">close</string>
     <string name="welcome_to_btc_exchange">Welcome to BTC Exchange</string>
