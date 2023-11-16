@@ -1,5 +1,6 @@
 package com.example.login_page
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
@@ -20,13 +21,16 @@ class SignUpActivity : AppCompatActivity(),TextWatcher {
         setContentView(binding.root)
 
         binding.signUpButton.setOnClickListener {
-            val intent=Intent(applicationContext,HomeActivity2::class.java);
+            val sharedPref =  getSharedPreferences("Local", Context.MODE_PRIVATE)
+            val intent=Intent(applicationContext,HomeActivity::class.java);
             val name:String=binding.nameEditText.text.toString()
-            val password=binding.passwordEditText.text.toString()
+//            val password=binding.passwordEditText.text.toString()
             val email=binding.emailEditText.text.toString()
-            intent.putExtra("Name",name)
-            intent.putExtra("Password",password)
-            intent.putExtra("Email",email)
+            val editor = sharedPref.edit()
+            editor.putString("Newname", name)
+            editor.putString("NewmailId",email)
+            editor.apply()
+
             startActivity(intent)
         }
 

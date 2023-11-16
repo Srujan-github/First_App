@@ -5,5 +5,7 @@
     <color name="blue">#2A47D8</color>
     <color name="lightblue">#3E5CF1</color>
     <color name="ash">#E4DEDE</color>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
 
 </resources>

@@ -1,6 +1,9 @@
 package com.example.login_page
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -31,7 +34,12 @@ class HomeActivity : AppCompatActivity() {
         }
         val headerView: View = binding.navView.getHeaderView(0)
         val headerBinding: NavHeaderBinding = NavHeaderBinding.bind(headerView)
-        headerBinding.userName.text = "Muthu"
+        val sharedPref =  getSharedPreferences("Local", Context.MODE_PRIVATE)
+        headerBinding.userName.text = sharedPref.getString("Newname", "Sai Surjan")
+        headerBinding.userMailId.text=sharedPref.getString("NewmailId","saisrujan@1gmail.com")
+        headerBinding.ProfileImg.setImageURI(Uri.parse(sharedPref.getString("image","iVBORw0KGgoAAAANSUhEUgAAAAUA" +
+                "AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO" +
+                "9TXL0Y4OHwAAAABJRU5ErkJggg==")))
         binding.apply {
             toggle = ActionBarDrawerToggle(
                 this@HomeActivity,
@@ -99,6 +107,9 @@ class HomeActivity : AppCompatActivity() {
 
                         Toast.makeText(this@HomeActivity, "You are logged out", Toast.LENGTH_SHORT)
                             .show()
+                        val editor=sharedPref.edit()
+                        editor.clear()
+                        editor.apply()
                         finish()
                     }
                 }
@@ -117,13 +128,14 @@ class HomeActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        val headerView: View = binding.navView.getHeaderView(0)
-        val headerBinding: NavHeaderBinding = NavHeaderBinding.bind(headerView)
-        headerBinding.ProfileImg.setImageURI(data?.data)
-
-    }
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        val headerView: View = binding.navView.getHeaderView(0)
+//        val headerBinding: NavHeaderBinding = NavHeaderBinding.bind(headerView)
+//        headerBinding.ProfileImg.setImageURI(data?.data)
+//
+//
+//    }
 
 
 }
