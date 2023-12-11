@@ -16,6 +16,10 @@
     android:title="Settings"
     android:id="@+id/setting"
     android:icon="@drawable/baseline_settings_24"/>
+    <item
+        android:title="Categories"
+        android:id="@+id/categories"
+        android:icon="@drawable/baseline_add_shopping_cart_24"/>
 
 <item android:title="Profile">
     <menu>

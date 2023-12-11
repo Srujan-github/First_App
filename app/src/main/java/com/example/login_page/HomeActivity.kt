@@ -12,6 +12,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.login_page.databinding.ActivityHomeBinding
 import com.example.login_page.databinding.NavHeaderBinding
+import com.google.firebase.FirebaseApp
 
 
 class HomeActivity : AppCompatActivity() {
@@ -26,20 +27,29 @@ class HomeActivity : AppCompatActivity() {
         val homeFragment = HomeFragment()
         val messagesFragment = MessagesFragment()
         val settingsFragment = SettingsFragment()
+        val categoriesFragment = categoriesFragment()
+        FirebaseApp.initializeApp(this)
         supportFragmentManager.beginTransaction().apply {
 
             replace(R.id.flvfragements, homeFragment)
 
             commit()
         }
+
         val headerView: View = binding.navView.getHeaderView(0)
         val headerBinding: NavHeaderBinding = NavHeaderBinding.bind(headerView)
-        val sharedPref =  getSharedPreferences("Local", Context.MODE_PRIVATE)
+        val sharedPref = getSharedPreferences("Local", Context.MODE_PRIVATE)
         headerBinding.userName.text = sharedPref.getString("Newname", "Sai Surjan")
-        headerBinding.userMailId.text=sharedPref.getString("NewmailId","saisrujan@1gmail.com")
-        headerBinding.ProfileImg.setImageURI(Uri.parse(sharedPref.getString("image","iVBORw0KGgoAAAANSUhEUgAAAAUA" +
-                "AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO" +
-                "9TXL0Y4OHwAAAABJRU5ErkJggg==")))
+        headerBinding.userMailId.text = sharedPref.getString("NewmailId", "saisrujan@1gmail.com")
+        headerBinding.ProfileImg.setImageURI(
+            Uri.parse(
+                sharedPref.getString(
+                    "image", "iVBORw0KGgoAAAANSUhEUgAAAAUA" +
+                            "AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO" +
+                            "9TXL0Y4OHwAAAABJRU5ErkJggg=="
+                )
+            )
+        )
         binding.apply {
             toggle = ActionBarDrawerToggle(
                 this@HomeActivity,
@@ -103,11 +113,25 @@ class HomeActivity : AppCompatActivity() {
                         drawerLayout.close()
                     }
 
+                    R.id.categories -> {
+                        supportFragmentManager.beginTransaction().apply {
+                            replace(R.id.flvfragements, categoriesFragment)
+                            addToBackStack(null)
+                            commit()
+                        }
+                        Toast.makeText(
+                            this@HomeActivity,
+                            "this is categories Fragment",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        drawerLayout.close()
+                    }
+
                     R.id.looOut -> {
 
                         Toast.makeText(this@HomeActivity, "You are logged out", Toast.LENGTH_SHORT)
                             .show()
-                        val editor=sharedPref.edit()
+                        val editor = sharedPref.edit()
                         editor.clear()
                         editor.apply()
                         finish()

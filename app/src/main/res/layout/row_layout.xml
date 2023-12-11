@@ -15,24 +15,24 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
         
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="350dp">
             <ImageView
                 android:id="@+id/ImgView"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
                 android:src="@mipmap/ic_launcher"/>
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:gravity="center_vertical"
-                android:layout_marginLeft="8dp">
+                android:layout_marginStart="8dp">
 
                 <TextView
                     android:id="@+id/title"
@@ -41,6 +41,7 @@
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:text="Name"
+                    android:ellipsize="marquee"
                     android:maxLines="2"
                     android:textSize="20sp"/>
 
@@ -50,50 +51,53 @@
                     android:layout_height="wrap_content"
                     android:textStyle="normal"
                     android:textSize="16dp"
+                    android:ellipsize="end"
                     android:maxLines="2"
                     android:text="descrip adjkn adfas adsdasdv sdad"/>
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/password"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        />
+
+                    <TextView
+                        android:id="@+id/rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2.4"
+                        android:textSize="19sp"
+                        app:layout_constraintTop_toTopOf="@id/star"
+                         app:layout_constraintBottom_toBottomOf="@id/star"
+                        app:layout_constraintEnd_toStartOf="@id/star"
+                        />
+                    <ImageView
+                        android:id="@+id/star"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_star"
+
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        />
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/star1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_star"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="4dp"/>
 
-            <ImageView
-                android:id="@+id/star2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_star"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="4dp"/>
-
-            <ImageView
-                android:id="@+id/star3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_star"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="4dp"/>
-
-            <ImageView
-                android:id="@+id/star4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_star"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="4dp"/>
-
-            <ImageView
-                android:id="@+id/star5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_star"
-
-                android:layout_gravity="center_vertical"/>
 
         </LinearLayout>
 

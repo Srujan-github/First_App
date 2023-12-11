@@ -33,14 +33,14 @@ class ProductFragment : Fragment() {
 
 
 
-    fun newInstance(selectedItem: MyDataItem):ProductFragment{
+    fun newInstance(selectedItem: Product):ProductFragment{
         Log.d("tielt","${selectedItem.title} this is title")
        val fragment=ProductFragment()
         val storeInBudle=Bundle()
         storeInBudle.putString("title",selectedItem.title)
         storeInBudle.putString("descrip",selectedItem.description)
         storeInBudle.putString("price",selectedItem.price.toString())
-        storeInBudle.putSerializable("image",selectedItem.image)
+        storeInBudle.putSerializable("image",selectedItem.thumbnail)
         fragment.arguments =storeInBudle
         return fragment
     }

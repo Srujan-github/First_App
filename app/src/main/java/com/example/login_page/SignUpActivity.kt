@@ -36,7 +36,7 @@ class SignUpActivity : AppCompatActivity(),TextWatcher {
 
         binding.backBtn.setOnClickListener{
 
-            finish();
+            finish()
         }
         binding.signInBtn.setOnClickListener {
             val intent=Intent(this@SignUpActivity,SignInActivity::class.java);

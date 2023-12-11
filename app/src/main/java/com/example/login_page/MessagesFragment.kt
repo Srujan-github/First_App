@@ -1,27 +1,27 @@
 package com.example.login_page
 
+import android.app.Activity
 import android.app.AlertDialog
-import android.content.Context
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+
 import android.widget.Toast
 import androidx.activity.addCallback
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.login_page.databinding.FragmentMessagesBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.google.firebase.messaging.FirebaseMessaging
 
 
-const val BASE_URL = "https://fakestoreapi.com/"
+//const val BASE_URL = "https://fakestoreapi.com/"
+const val BASE_URL = "https://dummyjson.com/"
 
 
 class MessagesFragment : Fragment(),MyAdapter.OnItemClickListener {
@@ -29,32 +29,30 @@ class MessagesFragment : Fragment(),MyAdapter.OnItemClickListener {
     private val binding get() = _binding!!
     var isDeletScreen:Boolean=true
 //       lateinit var dataList: Set<String>
-  var listOfItem: MutableList<MyDataItem> = mutableListOf()
-  var listOfDeletedItems: MutableList<MyDataItem> = mutableListOf()
+  var listOfItem: MutableList<Product> = mutableListOf()
+  var listOfDeletedItems: MutableList<Product> = mutableListOf()
+
     lateinit var myAdapter: MyAdapter
-    lateinit var linearLayoutManager: LinearLayoutManager
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
+        val jsonString = categoriesImgMap.readJSONFromAsset(requireContext(), "products.json")
+        val productList = categoriesImgMap.parseJSONToProductList(jsonString)
         _binding = FragmentMessagesBinding.inflate(inflater, container, false)
         binding.recycleView.setHasFixedSize(true)
+        listOfItem=productList.toMutableList()
 
-        linearLayoutManager=LinearLayoutManager(requireContext())
-        binding.recycleView.layoutManager=linearLayoutManager
+//        linearLayoutManager=LinearLayoutManager(requireContext())
+        binding.recycleView.layoutManager=GridLayoutManager(requireContext(),2)
         isDeletScreen=true
-
-        if( listOfItem.isEmpty()){
-            getMyData()
-
-
-        } else {
-            myAdapter=MyAdapter(requireContext(),listOfItem,this@MessagesFragment,this@MessagesFragment)
-            binding.recycleView.adapter=myAdapter
-            binding.progressBar.visibility=View.GONE
-        }
+        binding.progressBar.visibility=View.GONE
+        myAdapter=MyAdapter(requireContext(),listOfItem,this,this)
+        binding.recycleView.adapter=myAdapter
         binding.btnDelete.setOnClickListener({
         if (!listOfDeletedItems.isEmpty()){
                 myAdapter=MyAdapter(requireContext(),listOfDeletedItems,this@MessagesFragment,this@MessagesFragment)
@@ -71,36 +69,10 @@ class MessagesFragment : Fragment(),MyAdapter.OnItemClickListener {
         return binding.root
     }
 
-    private fun getMyData() {
-        val retrofitBuilder =
-            Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl(BASE_URL)
-                .build().create(ApiInterFace::class.java)
-        val retrofitData = retrofitBuilder.getData()
-        retrofitData.enqueue(object : Callback<List<MyDataItem>?> {
-            override fun onResponse(
-                call: Call<List<MyDataItem>?>,
-                response: Response<List<MyDataItem>?>
-            ) {
-                val responseBody =response.body()!!
-               listOfItem  = responseBody.toMutableList()
-                binding.progressBar.visibility=View.GONE
-
-                 myAdapter=MyAdapter(requireContext(),listOfItem,this@MessagesFragment,this@MessagesFragment)
-                binding.recycleView.adapter=myAdapter
 
 
-            }
 
-            override fun onFailure(call: Call<List<MyDataItem>?>, t: Throwable) {
-                requireActivity().finish()
-                Toast.makeText(requireContext(),"Api is timed out",Toast.LENGTH_SHORT)
-                Log.d("Messages Fragment","onFailure "+t.message)
-            }
-        })
-
-    }
-
-    override fun onItemClick(item: MyDataItem) {
+    override fun onItemClick(item: Product) {
         val detailsFragment = ProductFragment().newInstance(item)
 
         requireActivity().supportFragmentManager.beginTransaction()
@@ -108,7 +80,7 @@ class MessagesFragment : Fragment(),MyAdapter.OnItemClickListener {
             .addToBackStack(null)
             .commit()
     }
-     fun onItemLongClick(item: MyDataItem){
+     fun onItemLongClick(item: Product){
          if(isDeletScreen){
              val builder = AlertDialog.Builder(requireContext())
              builder.setTitle("Delete Item")
@@ -140,4 +112,39 @@ class MessagesFragment : Fragment(),MyAdapter.OnItemClickListener {
             }
         }
     }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu, menu)
+        val searchItem = menu.findItem(R.id.actionSearch)
+        val searchView = searchItem.actionView as SearchView
+
+        // Set listener for search view
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                // Handle search query submission
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filter(newText.toString())
+                return false
+            }
+        })
+    }
+   private fun filter(inputText:String){
+       var filterList: MutableList<Product> = mutableListOf()
+       for(items in listOfItem){
+           if(items.title.lowercase().contains(inputText.lowercase())){
+               filterList.add(items)
+           }
+       }
+       if(filterList.isEmpty()){
+           Toast.makeText(requireContext(), "No Data Found..", Toast.LENGTH_SHORT).show()
+           myAdapter=MyAdapter(requireContext(),filterList,this@MessagesFragment,this@MessagesFragment)
+           binding.recycleView.adapter=myAdapter
+
+       }else{
+           myAdapter=MyAdapter(requireContext(),filterList,this@MessagesFragment,this@MessagesFragment)
+           binding.recycleView.adapter=myAdapter
+       }
+   }
 }
